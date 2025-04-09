@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import AppCard from "../components/AppCard";
 
@@ -23,11 +23,21 @@ function DetailPage() {
 
     return (
         <div className="container mt-5 d-flex flex-column align-items-center">
+            {/* Navigation */}
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/projects">Progetti</Link></li>
+                    <li className="breadcrumb-item active" aria-current="page">Dettagli</li>
+                </ol>
+            </nav>
+
+            {/* Project Details */}
             {project && <h2 className="mt-5 mb-2">{project.nome}</h2>}
             <div className="div">
                 {project.technologies && project.technologies.map(tech => <span key={tech.id} className="badge me-2 mb-5" style={{ backgroundColor: tech.colore }}>{tech.nome}</span>)}
             </div>
-            {project && <AppCard project={project} isDetailed={true} />}
+            {project.id && <AppCard project={project} isDetailed={true} />}
         </div>
     )
 }
