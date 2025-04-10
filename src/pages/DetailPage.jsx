@@ -33,10 +33,11 @@ function DetailPage() {
             </nav>
 
             {/* Project Details */}
-            {project && <h2 className="mt-5 mb-2">{project.nome}</h2>}
+            {project && <h2 className="mt-2 mb-2">{project.nome}</h2>}
             <div className="div">
-                {project.technologies && project.technologies.map(tech => <span key={tech.id} className="badge me-2 mb-5" style={{ backgroundColor: tech.colore }}>{tech.nome}</span>)}
+                {project.technologies && project.technologies.map(tech => <span key={tech.id} className="badge me-2 mb-3" style={{ backgroundColor: tech.colore }}>{tech.nome}</span>)}
             </div>
+            {project.image_url && <img src={`${import.meta.env.VITE_IMG_URL}/${project.image_url}`} alt={project.nome} style={{maxWidth: 300}} className="mb-5"/>}
             {project.id && <AppCard project={project} isDetailed={true} />}
         </div>
     )
